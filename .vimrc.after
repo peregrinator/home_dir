@@ -1,0 +1,150 @@
+"allow selecting with shift movement
+if has("gui_macvim")
+  let macvim_hig_shift_movement = 1
+endif
+
+set undofile
+
+set listchars=tab:▸\ ,eol:¬
+
+"get rid of that stupid goddamned help key that you will invaribly hit constantly while aiming for escape
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+"shortcut to NERDTree
+nnoremap <leader>N :NERDTree
+nnoremap <leader>Nc :NERDTree ~/code/critical_juncture/
+nnoremap <leader>No :NERDTree ~/code/other/
+nnoremap <leader>Nw :NERDTree ~/code/wested/
+
+"show bookmarks on startup
+let NERDTreeShowBookmarks=1
+
+"create vertical split and switch to it
+nnoremap <leader>w <C-w>v<C-w>l
+
+"move between splits with ctrl + [hjkl]
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" color scheme
+syntax on
+set background=dark
+color molokai
+
+nnoremap <leader>a :Ack
+
+" set leader to something custom
+let mapleader = ","
+
+" bump font size
+set guifont="Menlo\ Bold\ 14"
+
+"Custom Command-T mappings
+" Open files with <leader>f
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" Open files, limited to the directory of the current file, with <leader>gf
+" This requires the %% mapping found below.
+map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
+
+
+"Custom Rails-specific Command-T mappings
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>ga :CommandTFlush<cr>\|:CommandT app/admin<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
+
+"Other Rails-specific file keystrokes
+map <leader>gr :topleft :split config/routes.rb<cr>
+map <leader>gg :topleft 100 :split Gemfile<cr>
+
+
+"Show the current routes in the split
+function! ShowRoutes()
+  " Requires 'scratch' plugin
+  :topleft 100 :split __Routes__
+  " Make sure Vim doesn't write __Routes__ as a file
+  :set buftype=nofile
+  " Delete everything
+  :normal 1GdG
+  " Put routes output in buffer
+  :0r! rake -s routes
+  " Size window to number of lines (1 plus rake output length)
+  :exec ":normal " . line("$") . " _ "
+  " Move cursor to bottom
+  :normal 1GG
+  " Delete empty trailing line
+  :normal dd
+endfunction
+map <leader>gR :call ShowRoutes()<cr>
+
+
+"Edit or view files in same directory as current file	
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
+
+
+"Make the current window big, but leave others context
+set winwidth=84
+" We have to have a winheight bigger than we want to set winminheight. But if
+" we set winheight to be huge before winminheight, the winminheight set will
+" fail.
+set winheight=5
+set winminheight=5
+set winheight=999
+
+
+"Run only the tests you want while moving around
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo
+    exec ":!bundle exec rspec " . a:filename
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_spec_file = match(expand("%"), '_spec.rb$') != -1
+    if in_spec_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+" Run this file
+map <leader>t :call RunTestFile()<cr>
+" Run only the example under the cursor
+map <leader>T :call RunNearestTest()<cr>
+" Run all test files
+map <leader>a :call RunTests('spec')<cr>
+
+
+"Switch between the last two files
+nnoremap <leader><leader> <c-^>
+

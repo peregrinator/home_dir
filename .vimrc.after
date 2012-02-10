@@ -47,7 +47,7 @@ nnoremap <leader>a :Ack
 let mapleader = ","
 
 " bump font size
-set guifont="Menlo\ Bold\ 14"
+set guifont=Menlo\ Bold:h14
 
 "Custom Command-T mappings
 " Open files with <leader>f

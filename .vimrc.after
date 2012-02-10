@@ -47,7 +47,7 @@ nnoremap <leader>a :Ack
 let mapleader = ","
 
 " bump font size
-set guifont=Menlo\ Bold:h14
+set guifont=Menlo\ Bold\ for\ Powerline:h14
 
 "Custom Command-T mappings
 " Open files with <leader>f
@@ -158,3 +158,6 @@ nnoremap <leader><leader> <c-^>
 
 " Ensure filetype plugins are enabled
 filetype plugin on
+
+" Turn on fancy symbols for vim powerline
+let g:Powerline_symbols = 'fancy'

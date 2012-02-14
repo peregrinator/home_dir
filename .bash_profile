@@ -82,7 +82,7 @@ export GEM_OPEN_EDITOR="mvim"
 export BUNDLER_EDITOR="mvim"
 export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home/"
 export EC2_HOME="$HOME/.ec2/ec2-api-tools-1.4.2.3"
-
+export HISTIGNORE="&:ls:[bf]g:exit"
 
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/mongodb-osx-x86_64-2009-11-24/bin:$EC2_HOME/bin:/Applications/splunk/bin:$PATH"
 

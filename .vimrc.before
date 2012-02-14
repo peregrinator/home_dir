@@ -1,0 +1,2 @@
+" set leader to something custom
+let mapleader = ","

@@ -73,7 +73,7 @@ complete -o default -F _gemopencomplete gem
 
 
 
-source ~/.bash/git-completion.bash 
+source /usr/local/git/contrib/completion/git-completion.bash
 source ~/.bash_login
 export EDITOR="vim"
 export TERM_EDITOR="mvim"

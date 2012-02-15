@@ -166,4 +166,4 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,tags,*bin/**,.rvmrc,vendor/plugins/**,
 map <leader>l :ls<cr>
 
 " make zoom win easier to access
-nnoremap <leader>\ :ZoomWin
+nnoremap <leader>\ :ZoomWin<cr>

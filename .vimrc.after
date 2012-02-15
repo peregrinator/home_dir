@@ -162,3 +162,9 @@ let g:Powerline_symbols = 'fancy'
 " Ignore certain types of files
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,tags,bin/**,.rvmrc,vendor/plugins/**,*/.swo,*/.swn,*/.DS_Store
 "let g:ctrlp_custom_ignore = '\/bin\/$\|\.rvmrc\|tags'
+
+" list open buffers
+map <leader>l :ls<cr>
+
+" make zoom win easier to access
+nnoremap <leader>\ :ZoomWin

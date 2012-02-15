@@ -1,6 +1,7 @@
 "allow selecting with shift movement
 if has("gui_macvim")
   let macvim_hig_shift_movement = 1
+  set undofile
 endif
 
 "hide mvim default toolbar and
@@ -8,8 +9,6 @@ endif
 if has("gui_running")
   set guioptions=egmrt
 endif
-
-set undofile
 
 set listchars=tab:▸\ ,eol:¬
 
@@ -160,7 +159,7 @@ filetype plugin on
 let g:Powerline_symbols = 'fancy'
 
 " Ignore certain types of files
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,tags,bin/**,.rvmrc,vendor/plugins/**,*/.swo,*/.swn,*/.DS_Store
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,tags,*bin/**,.rvmrc,vendor/plugins/**,*/.swo,*/.swn,*/.DS_Store/,*/.gitkeep
 "let g:ctrlp_custom_ignore = '\/bin\/$\|\.rvmrc\|tags'
 
 " list open buffers

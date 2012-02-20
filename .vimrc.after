@@ -158,6 +158,9 @@ filetype plugin on
 " Turn on fancy symbols for vim powerline
 let g:Powerline_symbols = 'fancy'
 
+" Set the ctrl-p working path mode to .git dir
+let g:ctrlp_working_path_mode = 2
+
 " Ignore certain types of files
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,tags,*bin/**,.rvmrc,vendor/plugins/**,*/.swo,*/.swn,*/.DS_Store/,*/.gitkeep
 "let g:ctrlp_custom_ignore = '\/bin\/$\|\.rvmrc\|tags'

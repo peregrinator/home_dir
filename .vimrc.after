@@ -170,3 +170,11 @@ map <leader>l :ls<cr>
 
 " make zoom win easier to access
 nnoremap <leader>\ :ZoomWin<cr>
+
+" ctags plus config
+"let Tlist_Ctags_Cmd = "/usr/bin/ctags -R"
+let Tlist_WinWidth = 50
+map <leader>cx :TlistToggle<cr>
+
+" set active admin template filetype
+au BufRead,BufNewFile *.arb   set filetype=ruby

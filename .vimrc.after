@@ -64,6 +64,14 @@ map <leader>gp :CtrlP public<cr>
 map <leader>gs :CtrlP app/assets/stylesheets<cr>
 map <leader>gj :CtrlP app/assets/javascripts<cr>
 
+map <leader>s  :CtrlP spec/<cr>
+map <leader>sm :CtrlP spec/models<cr>
+map <leader>sf :CtrlP spec/factories<cr>
+map <leader>sc :CtrlP spec/controllers<cr>
+map <leader>sv :CtrlP spec/views<cr>
+map <leader>sr :CtrlP spec/routing<cr>
+map <leader>sh :CtrlP spec/helpers<cr>
+
 
 "Other Rails-specific file keystrokes
 map <leader>gr :topleft :split config/routes.rb<cr>
